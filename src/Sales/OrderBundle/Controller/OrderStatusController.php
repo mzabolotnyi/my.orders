@@ -16,7 +16,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class OrderStatusController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("")
      * @return JsonResponse
      */
     public function getAllAction()
