@@ -3,6 +3,8 @@
 namespace Sales\OrderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Size
@@ -15,6 +17,7 @@ class Size
     /**
      * @var int
      *
+     * @Groups({"size_list", "size_type_list"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -24,6 +27,8 @@ class Size
     /**
      * @var string
      *
+     * @Assert\NotBlank()
+     * @Groups({"size_list", "size_type_list"})
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
@@ -31,6 +36,8 @@ class Size
     /**
      * @var SizeType
      *
+     * @Assert\NotBlank()
+     * @Groups({"size_list"})
      * @ORM\ManyToOne(targetEntity="SizeType", inversedBy="sizes")
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false)
      */

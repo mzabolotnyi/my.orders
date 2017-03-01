@@ -1,3 +1,0 @@
-sales_order_homepage:
-    path:     /
-    defaults: { _controller: SalesOrderBundle:Default:index }

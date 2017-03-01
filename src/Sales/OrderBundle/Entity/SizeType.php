@@ -4,6 +4,7 @@ namespace Sales\OrderBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * SizeType
@@ -16,6 +17,7 @@ class SizeType
     /**
      * @var int
      *
+     * @Groups({"size_type_list", "size_list"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -25,6 +27,7 @@ class SizeType
     /**
      * @var string
      *
+     * @Groups({"size_type_list", "size_list"})
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
@@ -32,6 +35,7 @@ class SizeType
     /**
      * @var ArrayCollection
      *
+     * @Groups({"size_type_list"})
      * @ORM\OneToMany(targetEntity="Size", mappedBy="type", cascade={"remove"})
      */
     private $sizes;

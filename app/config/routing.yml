@@ -1,3 +1,13 @@
+sales_order_size_type:
+    resource: "@SalesOrderBundle/Controller/SizeTypeRESTController.php"
+    type: rest
+    prefix: /
+
+sales_order_size:
+    resource: "@SalesOrderBundle/Controller/SizeRESTController.php"
+    type: rest
+    prefix: /
+
 sales_order:
     resource: "@SalesOrderBundle/Controller"
     type: annotation

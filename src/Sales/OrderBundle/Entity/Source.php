@@ -4,6 +4,7 @@ namespace Sales\OrderBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Source
@@ -16,6 +17,7 @@ class Source
     /**
      * @var int
      *
+     * @Groups({"source_list", "order_list"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -25,6 +27,7 @@ class Source
     /**
      * @var string
      *
+     * @Groups({"source_list", "order_list"})
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
@@ -32,6 +35,7 @@ class Source
     /**
      * @var string
      *
+     * @Groups({"source_list", "order_list"})
      * @ORM\Column(name="link", type="string", length=255, nullable=true)
      */
     private $link;
@@ -39,6 +43,7 @@ class Source
     /**
      * @var string
      *
+     * @Groups({"source_list", "order_list"})
      * @ORM\Column(name="comment", type="text", nullable=true)
      */
     private $comment;

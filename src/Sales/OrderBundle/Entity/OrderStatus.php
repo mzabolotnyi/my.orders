@@ -16,7 +16,7 @@ class OrderStatus
     /**
      * @var int
      *
-     * @Groups({"order_list", "order_status_list"})
+     * @Groups({"order_status_list", "order_list"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -26,7 +26,7 @@ class OrderStatus
     /**
      * @var string
      *
-     * @Groups({"order_list", "order_status_list"})
+     * @Groups({"order_status_list", "order_list"})
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
@@ -34,7 +34,7 @@ class OrderStatus
     /**
      * @var string
      *
-     * @Groups({"order_list", "order_status_list"})
+     * @Groups({"order_status_list", "order_list"})
      * @ORM\Column(name="alias", type="string", length=255, unique=true)
      */
     private $alias;
