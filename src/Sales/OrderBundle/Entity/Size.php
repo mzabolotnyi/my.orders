@@ -3,20 +3,18 @@
 namespace Sales\OrderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation\Groups;
 
 /**
- * OrderStatus
+ * Size
  *
- * @ORM\Table(name="order_status")
- * @ORM\Entity(repositoryClass="Sales\OrderBundle\Repository\OrderStatusRepository")
+ * @ORM\Table(name="size")
+ * @ORM\Entity(repositoryClass="Sales\OrderBundle\Repository\SizeRepository")
  */
-class OrderStatus
+class Size
 {
     /**
      * @var int
      *
-     * @Groups({"order_list", "order_status_list"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -26,18 +24,17 @@ class OrderStatus
     /**
      * @var string
      *
-     * @Groups({"order_list", "order_status_list"})
-     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
-     * @var string
+     * @var SizeType
      *
-     * @Groups({"order_list", "order_status_list"})
-     * @ORM\Column(name="alias", type="string", length=255, unique=true)
+     * @ORM\ManyToOne(targetEntity="SizeType", inversedBy="sizes")
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false)
      */
-    private $alias;
+    private $type;
 
     /**
      * Get id
@@ -54,7 +51,7 @@ class OrderStatus
      *
      * @param string $name
      *
-     * @return OrderStatus
+     * @return Size
      */
     public function setName($name)
     {
@@ -74,26 +71,26 @@ class OrderStatus
     }
 
     /**
-     * Set alias
+     * Set type
      *
-     * @param string $alias
+     * @param \Sales\OrderBundle\Entity\SizeType $type
      *
-     * @return OrderStatus
+     * @return Size
      */
-    public function setAlias($alias)
+    public function setType(\Sales\OrderBundle\Entity\SizeType $type)
     {
-        $this->alias = $alias;
+        $this->type = $type;
 
         return $this;
     }
 
     /**
-     * Get alias
+     * Get type
      *
-     * @return string
+     * @return \Sales\OrderBundle\Entity\SizeType
      */
-    public function getAlias()
+    public function getType()
     {
-        return $this->alias;
+        return $this->type;
     }
 }
