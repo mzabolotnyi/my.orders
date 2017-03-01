@@ -87,6 +87,8 @@ fos_rest:
         enabled: true
     view:
         view_response_listener: force
+    serializer:
+        serialize_null: true
 
 # Nelmio Cors Configuration
 nelmio_cors:

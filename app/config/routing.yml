@@ -8,7 +8,12 @@ sales_order_size:
     type: rest
     prefix: /
 
+sales_order_source:
+    resource: "@SalesOrderBundle/Controller/SourceRESTController.php"
+    type: rest
+    prefix: /
+
 sales_order:
     resource: "@SalesOrderBundle/Controller"
     type: annotation
-    prefix: /sales
+    prefix: /

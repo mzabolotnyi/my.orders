@@ -5,12 +5,15 @@ namespace Sales\OrderBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Source
  *
  * @ORM\Table(name="source")
  * @ORM\Entity(repositoryClass="Sales\OrderBundle\Repository\SourceRepository")
+ * @UniqueEntity("name")
  */
 class Source
 {
@@ -27,6 +30,7 @@ class Source
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @Groups({"source_list", "order_list"})
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */

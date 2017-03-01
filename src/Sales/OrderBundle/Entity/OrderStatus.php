@@ -4,6 +4,7 @@ namespace Sales\OrderBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * OrderStatus
@@ -26,6 +27,7 @@ class OrderStatus
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @Groups({"order_status_list", "order_list"})
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
@@ -34,6 +36,7 @@ class OrderStatus
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @Groups({"order_status_list", "order_list"})
      * @ORM\Column(name="alias", type="string", length=255, unique=true)
      */

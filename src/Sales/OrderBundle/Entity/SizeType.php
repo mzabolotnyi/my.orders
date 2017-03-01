@@ -5,12 +5,15 @@ namespace Sales\OrderBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * SizeType
  *
  * @ORM\Table(name="size_type")
  * @ORM\Entity(repositoryClass="Sales\OrderBundle\Repository\SizeTypeRepository")
+ * @UniqueEntity("name")
  */
 class SizeType
 {
@@ -27,6 +30,7 @@ class SizeType
     /**
      * @var string
      *
+     * @Assert\NotBlank()
      * @Groups({"size_type_list", "size_list"})
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
