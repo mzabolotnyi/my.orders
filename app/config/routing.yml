@@ -1,3 +1,8 @@
+sales_order_order:
+    resource: "@SalesOrderBundle/Controller/OrderRESTController.php"
+    type: rest
+    prefix: /
+
 sales_order_shop:
     resource: "@SalesOrderBundle/Controller/ShopRESTController.php"
     type: rest

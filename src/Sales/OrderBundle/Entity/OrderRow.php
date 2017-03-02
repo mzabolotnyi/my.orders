@@ -17,6 +17,7 @@ class OrderRow
     /**
      * @var int
      *
+     * @Groups({"order_list"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -26,6 +27,8 @@ class OrderRow
     /**
      * @var string
      *
+     * @Assert\NotBlank()
+     * @Groups({"order_list"})
      * @ORM\Column(name="product", type="string", length=255)
      */
     private $product;
@@ -33,6 +36,8 @@ class OrderRow
     /**
      * @var int
      *
+     * @Assert\GreaterThanOrEqual(value="0")
+     * @Groups({"order_list"})
      * @ORM\Column(name="purchase_price", type="integer")
      */
     private $purchasePrice;
@@ -40,6 +45,8 @@ class OrderRow
     /**
      * @var int
      *
+     * @Assert\GreaterThanOrEqual(value="0")
+     * @Groups({"order_list"})
      * @ORM\Column(name="selling_price", type="integer")
      */
     private $sellingPrice;
@@ -47,6 +54,7 @@ class OrderRow
     /**
      * @var bool
      *
+     * @Groups({"order_list"})
      * @ORM\Column(name="weight_included", type="boolean")
      */
     private $weightIncluded;
@@ -54,6 +62,8 @@ class OrderRow
     /**
      * @var int
      *
+     * @Assert\GreaterThanOrEqual(value="0")
+     * @Groups({"order_list"})
      * @ORM\Column(name="weight_cost", type="integer")
      */
     private $weightCost;
@@ -61,6 +71,7 @@ class OrderRow
     /**
      * @var string
      *
+     * @Groups({"order_list"})
      * @ORM\Column(name="comment", type="text", nullable=true)
      */
     private $comment;
@@ -68,6 +79,7 @@ class OrderRow
     /**
      * @var Order
      *
+     * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Order", inversedBy="rows")
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=false)
      */
@@ -76,6 +88,8 @@ class OrderRow
     /**
      * @var SizeType
      *
+     * @Assert\NotBlank()
+     * @Groups({"order_list"})
      * @ORM\ManyToOne(targetEntity="SizeType")
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false)
      */
@@ -84,6 +98,8 @@ class OrderRow
     /**
      * @var Size
      *
+     * @Assert\NotBlank()
+     * @Groups({"order_list"})
      * @ORM\ManyToOne(targetEntity="Size")
      * @ORM\JoinColumn(name="size_id", referencedColumnName="id", nullable=false)
      */
@@ -92,6 +108,7 @@ class OrderRow
     /**
      * @var Shop
      *
+     * @Groups({"order_list"})
      * @ORM\ManyToOne(targetEntity="Shop")
      * @ORM\JoinColumn(name="shop_id", referencedColumnName="id", nullable=false)
      */

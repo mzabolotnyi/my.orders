@@ -33,6 +33,4 @@ class SizeTypeType extends AbstractType
     {
         return 'sales_orderbundle_sizetype';
     }
-
-
 }

@@ -6,17 +6,22 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ShopType extends AbstractType
+class OrderRowType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')
-            ->add('link')
+        $builder->add('product')
+            ->add('purchasePrice')
+            ->add('sellingPrice')
+            ->add('weightIncluded')
+            ->add('weightCost')
             ->add('comment')
-            ->add('sizeGuide');
+            ->add('type')
+            ->add('size')
+            ->add('shop');
     }
 
     /**
@@ -25,7 +30,7 @@ class ShopType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sales\OrderBundle\Entity\Shop'
+            'data_class' => 'Sales\OrderBundle\Entity\OrderRow'
         ));
     }
 
@@ -34,6 +39,6 @@ class ShopType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'sales_orderbundle_shop';
+        return 'sales_orderbundle_orderrow';
     }
 }

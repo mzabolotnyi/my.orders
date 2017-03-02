@@ -55,9 +55,10 @@ class Source
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Order", mappedBy="source", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Order", mappedBy="source", cascade={"remove"})
      */
     private $orders;
+
     /**
      * Constructor
      */

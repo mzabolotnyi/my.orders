@@ -18,6 +18,7 @@ class Order
     /**
      * @var int
      *
+     * @Groups({"order_list"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -27,6 +28,8 @@ class Order
     /**
      * @var \DateTime
      *
+     * @Assert\NotBlank()
+     * @Groups({"order_list"})
      * @ORM\Column(name="date", type="datetime")
      */
     private $date;
@@ -34,6 +37,7 @@ class Order
     /**
      * @var string
      *
+     * @Groups({"order_list"})
      * @ORM\Column(name="number", type="string", length=255, nullable=true)
      */
     private $number;
@@ -41,6 +45,7 @@ class Order
     /**
      * @var string
      *
+     * @Groups({"order_list"})
      * @ORM\Column(name="link", type="string", length=255, nullable=true)
      */
     private $link;
@@ -48,6 +53,7 @@ class Order
     /**
      * @var string
      *
+     * @Groups({"order_list"})
      * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     private $phone;
@@ -55,6 +61,7 @@ class Order
     /**
      * @var string
      *
+     * @Groups({"order_list"})
      * @ORM\Column(name="delivery", type="text", nullable=true)
      */
     private $delivery;
@@ -62,6 +69,7 @@ class Order
     /**
      * @var string
      *
+     * @Groups({"order_list"})
      * @ORM\Column(name="comment", type="text", nullable=true)
      */
     private $comment;
@@ -69,6 +77,7 @@ class Order
     /**
      * @var Source
      *
+     * @Groups({"order_list"})
      * @ORM\ManyToOne(targetEntity="Source", inversedBy="orders")
      * @ORM\JoinColumn(name="source_id", referencedColumnName="id")
      */
@@ -77,6 +86,8 @@ class Order
     /**
      * @var OrderStatus
      *
+     * @Assert\NotBlank()
+     * @Groups({"order_list"})
      * @ORM\ManyToOne(targetEntity="OrderStatus")
      * @ORM\JoinColumn(name="status_id", referencedColumnName="id")
      */
@@ -85,6 +96,8 @@ class Order
     /**
      * @var ArrayCollection
      *
+     * @Assert\NotBlank()
+     * @Groups({"order_list"})
      * @ORM\OneToMany(targetEntity="OrderRow", mappedBy="order", cascade={"remove"})
      */
     private $rows;

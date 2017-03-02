@@ -13,7 +13,8 @@ class SizeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('type');
+        $builder->add('name')
+            ->add('type');
     }
     
     /**
@@ -33,6 +34,4 @@ class SizeType extends AbstractType
     {
         return 'sales_orderbundle_size';
     }
-
-
 }

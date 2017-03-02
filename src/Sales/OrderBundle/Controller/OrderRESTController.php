@@ -2,8 +2,8 @@
 
 namespace Sales\OrderBundle\Controller;
 
-use Sales\OrderBundle\Entity\Shop;
-use Sales\OrderBundle\Form\ShopType;
+use Sales\OrderBundle\Entity\Order;
+use Sales\OrderBundle\Form\OrderType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
 use FOS\RestBundle\Controller\Annotations\View;
@@ -15,28 +15,28 @@ use Symfony\Component\HttpFoundation\Response;
 use Voryx\RESTGeneratorBundle\Controller\VoryxController;
 
 /**
- * Shop controller.
- * @RouteResource("Shop")
+ * Order controller.
+ * @RouteResource("Order")
  */
-class ShopRESTController extends VoryxController
+class OrderRESTController extends VoryxController
 {
     /**
-     * Get a Shop entity
+     * Get a Order entity
      *
-     * @View(serializerGroups={"shop_list"})
+     * @View(serializerGroups={"order_list"})
      *
      * @return Response
      *
      */
-    public function getAction(Shop $entity)
+    public function getAction(Order $entity)
     {
         return $entity;
     }
 
     /**
-     * Get all Shop entities.
+     * Get all Order entities.
      *
-     * @View(serializerGroups={"shop_list"})
+     * @View(serializerGroups={"order_list"})
      *
      * @param ParamFetcherInterface $paramFetcher
      *
@@ -56,7 +56,7 @@ class ShopRESTController extends VoryxController
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
 
             $em = $this->getDoctrine()->getManager();
-            $entities = $em->getRepository('SalesOrderBundle:Shop')->findBy($filters, $order_by, $limit, $offset);
+            $entities = $em->getRepository('SalesOrderBundle:Order')->findBy($filters, $order_by, $limit, $offset);
             if ($entities) {
                 return $entities;
             }
@@ -68,9 +68,9 @@ class ShopRESTController extends VoryxController
     }
 
     /**
-     * Create a Shop entity.
+     * Create a Order entity.
      *
-     * @View(statusCode=201, serializerGroups={"shop_list"})
+     * @View(statusCode=201, serializerGroups={"order_list"})
      *
      * @param Request $request
      *
@@ -79,17 +79,12 @@ class ShopRESTController extends VoryxController
      */
     public function postAction(Request $request)
     {
-        $entity = new Shop();
-        $form = $this->createForm(get_class(new ShopType()), $entity, array("method" => $request->getMethod()));
+        $entity = new Order();
+        $form = $this->createForm(get_class(new OrderType()), $entity, array("method" => $request->getMethod()));
         $this->removeExtraFields($request, $form);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-
-            $file = $entity->getSizeGuide();
-            $fileName = $this->get('file.upload.service')->upload($file);
-            $entity->setSizeGuide($fileName);
-
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -101,21 +96,21 @@ class ShopRESTController extends VoryxController
     }
 
     /**
-     * Update a Shop entity.
+     * Update a Order entity.
      *
-     * @View(serializerGroups={"shop_list"})
+     * @View(serializerGroups={"order_list"})
      *
      * @param Request $request
      * @param $entity
      *
      * @return Response
      */
-    public function putAction(Request $request, Shop $entity)
+    public function putAction(Request $request, Order $entity)
     {
         try {
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
-            $form = $this->createForm(get_class(new ShopType()), $entity, array("method" => $request->getMethod()));
+            $form = $this->createForm(get_class(new OrderType()), $entity, array("method" => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
             if ($form->isValid()) {
@@ -131,7 +126,7 @@ class ShopRESTController extends VoryxController
     }
 
     /**
-     * Delete a Shop entity.
+     * Delete a Order entity.
      *
      * @View(statusCode=204)
      *
@@ -140,7 +135,7 @@ class ShopRESTController extends VoryxController
      *
      * @return Response
      */
-    public function deleteAction(Request $request, Shop $entity)
+    public function deleteAction(Request $request, Order $entity)
     {
         try {
             $em = $this->getDoctrine()->getManager();

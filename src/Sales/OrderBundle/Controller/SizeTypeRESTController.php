@@ -61,7 +61,7 @@ class SizeTypeRESTController extends VoryxController
                 return $entities;
             }
 
-            return FOSView::create('Not Found', Codes::HTTP_NO_CONTENT);
+            return [];
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
         }

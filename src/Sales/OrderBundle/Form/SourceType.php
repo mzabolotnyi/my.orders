@@ -13,7 +13,9 @@ class SourceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('link')->add('comment');
+        $builder->add('name')
+            ->add('link')
+            ->add('comment');
     }
     
     /**
@@ -33,6 +35,4 @@ class SourceType extends AbstractType
     {
         return 'sales_orderbundle_source';
     }
-
-
 }
