@@ -20,6 +20,7 @@ class Version20170301094005 extends AbstractMigration
 
         $this->addSql('INSERT INTO order_status SET name=\'Новый\', alias=\'new\';');
         $this->addSql('INSERT INTO order_status SET name=\'Ожидается\', alias=\'expected\';');
+        $this->addSql('INSERT INTO order_status SET name=\'Готов к отправке\', alias=\'ready\';');
         $this->addSql('INSERT INTO order_status SET name=\'Отправлен\', alias=\'sent\';');
         $this->addSql('INSERT INTO order_status SET name=\'Выполнен\', alias=\'closed\';');
         $this->addSql('INSERT INTO order_status SET name=\'Проблемный\', alias=\'problem\';');

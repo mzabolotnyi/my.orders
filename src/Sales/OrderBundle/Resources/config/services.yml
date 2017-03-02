@@ -1,2 +1,5 @@
 services:
+    file.upload.service:
+        class: Sales\OrderBundle\Service\FileUploadService
+        arguments: ['%upload_dir%']
 

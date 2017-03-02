@@ -20,7 +20,7 @@ class SizeType
     /**
      * @var int
      *
-     * @Groups({"size_type_list", "size_list"})
+     * @Groups({"size_type_list", "size_list", "order_list"})
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -31,7 +31,7 @@ class SizeType
      * @var string
      *
      * @Assert\NotBlank()
-     * @Groups({"size_type_list", "size_list"})
+     * @Groups({"size_type_list", "size_list", "order_list"})
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;

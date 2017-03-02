@@ -39,7 +39,7 @@ class Source
     /**
      * @var string
      *
-     * @Groups({"source_list", "order_list"})
+     * @Groups({"source_list"})
      * @ORM\Column(name="link", type="string", length=255, nullable=true)
      */
     private $link;
@@ -47,7 +47,7 @@ class Source
     /**
      * @var string
      *
-     * @Groups({"source_list", "order_list"})
+     * @Groups({"source_list"})
      * @ORM\Column(name="comment", type="text", nullable=true)
      */
     private $comment;
