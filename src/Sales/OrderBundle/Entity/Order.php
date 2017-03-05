@@ -98,7 +98,7 @@ class Order
      *
      * @Assert\NotBlank()
      * @Groups({"order_list"})
-     * @ORM\OneToMany(targetEntity="OrderRow", mappedBy="order", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="OrderRow", mappedBy="order", cascade={"remove", "persist"})
      */
     private $rows;
 

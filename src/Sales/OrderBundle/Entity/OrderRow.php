@@ -62,7 +62,6 @@ class OrderRow
     /**
      * @var int
      *
-     * @Assert\GreaterThanOrEqual(value="0")
      * @Groups({"order_list"})
      * @ORM\Column(name="weight_cost", type="integer")
      */
@@ -81,7 +80,7 @@ class OrderRow
      *
      * @Assert\NotBlank()
      * @ORM\ManyToOne(targetEntity="Order", inversedBy="rows")
-     * @ORM\JoinColumn(name="order_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
      */
     private $order;
 
@@ -91,7 +90,7 @@ class OrderRow
      * @Assert\NotBlank()
      * @Groups({"order_list"})
      * @ORM\ManyToOne(targetEntity="SizeType")
-     * @ORM\JoinColumn(name="type_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="type_id", referencedColumnName="id")
      */
     private $type;
 
@@ -101,7 +100,7 @@ class OrderRow
      * @Assert\NotBlank()
      * @Groups({"order_list"})
      * @ORM\ManyToOne(targetEntity="Size")
-     * @ORM\JoinColumn(name="size_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="size_id", referencedColumnName="id")
      */
     private $size;
 
@@ -110,7 +109,7 @@ class OrderRow
      *
      * @Groups({"order_list"})
      * @ORM\ManyToOne(targetEntity="Shop")
-     * @ORM\JoinColumn(name="shop_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="shop_id", referencedColumnName="id")
      */
     private $shop;
 

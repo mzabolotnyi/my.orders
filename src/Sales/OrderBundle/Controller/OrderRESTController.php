@@ -3,6 +3,7 @@
 namespace Sales\OrderBundle\Controller;
 
 use Sales\OrderBundle\Entity\Order;
+use Sales\OrderBundle\Entity\OrderRow;
 use Sales\OrderBundle\Form\OrderType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
 use FOS\RestBundle\Controller\Annotations\RouteResource;
@@ -87,6 +88,14 @@ class OrderRESTController extends VoryxController
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
+
+            /** @var OrderRow[] $rows */
+            $rows = $entity->getRows();
+            foreach ($rows as $row){
+                $row->setOrder($entity);
+                $em->persist($row);
+            }
+
             $em->flush();
 
             return $entity;
@@ -108,12 +117,28 @@ class OrderRESTController extends VoryxController
     public function putAction(Request $request, Order $entity)
     {
         try {
+            /** @var OrderRow[] $rows */
+            $rowsOld = clone $entity->getRows();
+
             $em = $this->getDoctrine()->getManager();
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(get_class(new OrderType()), $entity, array("method" => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
+
             if ($form->isValid()) {
+
+                foreach ($rowsOld as $row){
+                    $em->remove($row);
+                }
+
+                /** @var OrderRow[] $rows */
+                $rows = $entity->getRows();
+                foreach ($rows as $row){
+                    $row->setOrder($entity);
+                    $em->persist($row);
+                }
+
                 $em->flush();
 
                 return $entity;

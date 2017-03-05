@@ -30,7 +30,8 @@ class OrderRowType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sales\OrderBundle\Entity\OrderRow'
+            'data_class' => 'Sales\OrderBundle\Entity\OrderRow',
+            'allow_extra_fields' => true,
         ));
     }
 

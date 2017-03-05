@@ -27,7 +27,11 @@ class OrderType extends AbstractType
             ->add('source')
             ->add('status')
             ->add('rows', CollectionType::class, array(
-                'entry_type' => OrderRowType::class
+                'entry_type' => OrderRowType::class,
+                'allow_add'=>true,
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false,
             ));
     }
 
@@ -37,7 +41,8 @@ class OrderType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sales\OrderBundle\Entity\Order'
+            'data_class' => 'Sales\OrderBundle\Entity\Order',
+            'allow_extra_fields' => true,
         ));
     }
 
