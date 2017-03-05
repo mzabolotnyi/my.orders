@@ -117,7 +117,7 @@ class OrderRESTController extends VoryxController
     public function putAction(Request $request, Order $entity)
     {
         try {
-            /** @var OrderRow[] $rows */
+            /** @var OrderRow[] $rowsOld */
             $rowsOld = clone $entity->getRows();
 
             $em = $this->getDoctrine()->getManager();
