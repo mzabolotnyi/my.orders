@@ -85,6 +85,11 @@ class SourceRESTController extends VoryxController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
+            $file = $entity->getIcon();
+            $fileName = $this->get('file.upload.service')->upload($file);
+            $entity->setIcon($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();

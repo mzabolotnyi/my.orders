@@ -39,10 +39,19 @@ class Shop
     /**
      * @var string
      *
-     * @Groups({"shop_list"})
+     * @Groups({"shop_list", "order_list"})
      * @ORM\Column(name="link", type="string", length=255, nullable=true)
      */
     private $link;
+
+    /**
+     * @var File
+     *
+     * @Assert\Image()
+     * @Groups({"shop_list", "order_list"})
+     * @ORM\Column(name="icon", type="string", nullable=true)
+     */
+    private $icon;
 
     /**
      * @var string
@@ -117,6 +126,30 @@ class Shop
     public function getLink()
     {
         return $this->link;
+    }
+
+    /**
+     * Set icon
+     *
+     * @param File $icon
+     *
+     * @return Shop
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * Get icon
+     *
+     * @return File
+     */
+    public function getIcon()
+    {
+        return $this->icon;
     }
 
     /**

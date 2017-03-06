@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -39,10 +40,19 @@ class Source
     /**
      * @var string
      *
-     * @Groups({"source_list"})
+     * @Groups({"source_list", "order_list"})
      * @ORM\Column(name="link", type="string", length=255, nullable=true)
      */
     private $link;
+
+    /**
+     * @var File
+     *
+     * @Assert\Image()
+     * @Groups({"source_list", "order_list"})
+     * @ORM\Column(name="icon", type="string", nullable=true)
+     */
+    private $icon;
 
     /**
      * @var string
@@ -123,6 +133,30 @@ class Source
     public function getLink()
     {
         return $this->link;
+    }
+
+    /**
+     * Set icon
+     *
+     * @param File $icon
+     *
+     * @return Shop
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * Get icon
+     *
+     * @return File
+     */
+    public function getIcon()
+    {
+        return $this->icon;
     }
 
     /**

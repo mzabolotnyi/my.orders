@@ -90,6 +90,10 @@ class ShopRESTController extends VoryxController
             $fileName = $this->get('file.upload.service')->upload($file);
             $entity->setSizeGuide($fileName);
 
+            $file = $entity->getIcon();
+            $fileName = $this->get('file.upload.service')->upload($file);
+            $entity->setIcon($fileName);
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
