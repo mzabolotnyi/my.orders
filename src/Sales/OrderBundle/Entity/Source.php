@@ -6,7 +6,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -46,9 +45,8 @@ class Source
     private $link;
 
     /**
-     * @var File
+     * @var string
      *
-     * @Assert\Image()
      * @Groups({"source_list", "order_list"})
      * @ORM\Column(name="icon", type="string", nullable=true)
      */
@@ -138,9 +136,9 @@ class Source
     /**
      * Set icon
      *
-     * @param File $icon
+     * @param string $icon
      *
-     * @return Shop
+     * @return Source
      */
     public function setIcon($icon)
     {
@@ -152,7 +150,7 @@ class Source
     /**
      * Get icon
      *
-     * @return File
+     * @return string
      */
     public function getIcon()
     {

@@ -15,6 +15,7 @@ class ShopType extends AbstractType
     {
         $builder->add('name')
             ->add('link')
+            ->add('icon')
             ->add('comment')
             ->add('sizeGuide');
     }

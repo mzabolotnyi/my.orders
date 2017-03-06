@@ -3,6 +3,7 @@
 namespace Sales\OrderBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,6 +16,7 @@ class SourceType extends AbstractType
     {
         $builder->add('name')
             ->add('link')
+            ->add('icon')
             ->add('comment');
     }
     
