@@ -111,3 +111,12 @@ sensio_framework_extra:
     request: { converters: true }
     view:    { annotations: false }
     router:  { annotations: true }
+
+# Vich Uploader Configuration
+vich_uploader:
+    db_driver: orm
+    mappings:
+        image:
+            uri_prefix:         /uploads
+            upload_destination: '%kernel.root_dir%/../web/uploads'
+            namer:              vich_uploader.namer_uniqid

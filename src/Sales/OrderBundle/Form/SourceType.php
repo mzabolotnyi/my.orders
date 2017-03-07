@@ -16,7 +16,7 @@ class SourceType extends AbstractType
     {
         $builder->add('name')
             ->add('link')
-            ->add('icon')
+            ->add('image', FileType::class)
             ->add('comment');
     }
     

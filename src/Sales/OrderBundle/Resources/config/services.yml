@@ -1,5 +1,8 @@
 services:
-    file.upload.service:
-        class: Sales\OrderBundle\Service\FileUploadService
-        arguments: ['%upload_dir%']
+    sales.order_bundle.serializer_subscriber:
+        class: Sales\OrderBundle\Listener\SerializationListener
+        arguments:
+            - '@service_container'
+        tags:
+            - { name: jms_serializer.event_subscriber }
 
