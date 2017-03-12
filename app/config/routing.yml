@@ -1,29 +1,29 @@
-sales_order_order:
-    resource: "@SalesOrderBundle/Controller/OrderRESTController.php"
+home_sales_order:
+    resource: "@HomeSalesBundle/Controller/OrderRESTController.php"
     type: rest
     prefix: /
 
-sales_order_shop:
-    resource: "@SalesOrderBundle/Controller/ShopRESTController.php"
+home_sales_shop:
+    resource: "@HomeSalesBundle/Controller/ShopRESTController.php"
     type: rest
     prefix: /
 
-sales_order_size_type:
-    resource: "@SalesOrderBundle/Controller/SizeTypeRESTController.php"
+home_sales_size_type:
+    resource: "@HomeSalesBundle/Controller/SizeCategoryRESTController.php"
     type: rest
     prefix: /
 
-sales_order_size:
-    resource: "@SalesOrderBundle/Controller/SizeRESTController.php"
+home_sales_size:
+    resource: "@HomeSalesBundle/Controller/SizeRESTController.php"
     type: rest
     prefix: /
 
-sales_order_source:
-    resource: "@SalesOrderBundle/Controller/SourceRESTController.php"
+home_sales_source:
+    resource: "@HomeSalesBundle/Controller/SourceRESTController.php"
     type: rest
     prefix: /
 
-sales_order:
-    resource: "@SalesOrderBundle/Controller"
+home_sales:
+    resource: "@HomeSalesBundle/Controller"
     type: annotation
     prefix: /
