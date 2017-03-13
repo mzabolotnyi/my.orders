@@ -85,6 +85,11 @@ class SourceRESTController extends VoryxController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
+            if (($icon = $entity->getIcon()) && !$icon->getData()) {
+                $entity->setIcon(null);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();

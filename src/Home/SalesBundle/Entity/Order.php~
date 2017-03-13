@@ -179,54 +179,6 @@ class Order
     }
 
     /**
-     * Set url
-     *
-     * @param string $url
-     *
-     * @return Order
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
-    /**
-     * Set urlChat
-     *
-     * @param string $urlChat
-     *
-     * @return Order
-     */
-    public function setUrlChat($urlChat)
-    {
-        $this->urlChat = $urlChat;
-
-        return $this;
-    }
-
-    /**
-     * Get urlChat
-     *
-     * @return string
-     */
-    public function getUrlChat()
-    {
-        return $this->urlChat;
-    }
-
-    /**
      * Set phone
      *
      * @param string $phone

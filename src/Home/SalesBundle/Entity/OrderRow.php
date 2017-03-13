@@ -55,7 +55,7 @@ class OrderRow
      * @var bool
      *
      * @Groups({"order_list"})
-     * @ORM\Column(name="weight_included", type="boolean")
+     * @ORM\Column(name="weight_included", type="boolean", nullable=true)
      */
     private $weightIncluded;
 
@@ -63,7 +63,7 @@ class OrderRow
      * @var int
      *
      * @Groups({"order_list"})
-     * @ORM\Column(name="weight_cost", type="integer")
+     * @ORM\Column(name="weight_cost", type="integer", nullable=true, options={"default":0})
      */
     private $weightCost;
 
@@ -112,6 +112,11 @@ class OrderRow
      * @ORM\JoinColumn(name="shop_id", referencedColumnName="id")
      */
     private $shop;
+
+    public function __construct()
+    {
+        $this->weightIncluded = false;
+    }
 
     /**
      * Get id

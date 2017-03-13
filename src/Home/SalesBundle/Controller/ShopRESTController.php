@@ -85,6 +85,15 @@ class ShopRESTController extends VoryxController
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+
+            if (($media = $entity->getIcon()) && !$media->getData()) {
+                $entity->setIcon(null);
+            }
+
+            if (($media = $entity->getSizeGuide()) && !$media->getData()) {
+                $entity->setSizeGuide(null);
+            }
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();

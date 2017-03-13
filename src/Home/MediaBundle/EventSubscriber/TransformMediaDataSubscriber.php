@@ -41,7 +41,7 @@ class TransformMediaDataSubscriber implements EventSubscriber
         if (!$entity instanceof Media) {
             return;
         }
-        
+
         $this->transformMediaData($entity);
     }
 

@@ -20,7 +20,8 @@ class OrderType extends AbstractType
                 'widget' => 'single_text',
                 'date_format' => 'yyy-MM-dd',
             ))
-            ->add('link')
+            ->add('url')
+            ->add('urlChat')
             ->add('phone')
             ->add('delivery')
             ->add('comment')
