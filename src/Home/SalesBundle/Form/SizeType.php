@@ -13,8 +13,7 @@ class SizeType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')
-            ->add('category');
+        $builder->add('name');
     }
     
     /**

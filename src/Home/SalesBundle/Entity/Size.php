@@ -4,16 +4,13 @@ namespace Home\SalesBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\ORM\Mapping\UniqueConstraint;
 
 /**
  * Size
  *
- * @ORM\Table(name="size", uniqueConstraints={@UniqueConstraint(name="size_unique", columns={"name", "category_id"})})
+ * @ORM\Table(name="size")
  * @ORM\Entity
- * @UniqueEntity(fields={"name", "category"})
  */
 class Size
 {
@@ -40,9 +37,8 @@ class Size
      * @var SizeCategory
      *
      * @Assert\NotBlank
-     * @Groups({"size_list"})
      * @ORM\ManyToOne(targetEntity="SizeCategory", inversedBy="sizes")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 

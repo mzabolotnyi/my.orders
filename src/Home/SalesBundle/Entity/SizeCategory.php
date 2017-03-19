@@ -40,7 +40,7 @@ class SizeCategory
      * @var ArrayCollection
      *
      * @Groups({"size_type_list"})
-     * @ORM\OneToMany(targetEntity="Size", mappedBy="category", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="Size", mappedBy="category", cascade={"remove", "persist"})
      */
     private $sizes;
     /**

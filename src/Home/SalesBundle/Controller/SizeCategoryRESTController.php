@@ -2,6 +2,7 @@
 
 namespace Home\SalesBundle\Controller;
 
+use Home\SalesBundle\Entity\Size;
 use Home\SalesBundle\Entity\SizeCategory;
 use Home\SalesBundle\Form\SizeCategoryType;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
@@ -87,6 +88,14 @@ class SizeCategoryRESTController extends VoryxController
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
+
+            /** @var Size[] $sizes */
+            $sizes = $entity->getSizes();
+            foreach ($sizes as $size) {
+                $size->setCategory($entity);
+                $em->persist($size);
+            }
+
             $em->flush();
 
             return $entity;
@@ -108,12 +117,27 @@ class SizeCategoryRESTController extends VoryxController
     public function putAction(Request $request, SizeCategory $entity)
     {
         try {
+            /** @var Size[] $sizesOld */
+            $sizesOld = clone $entity->getSizes();
             $em = $this->getDoctrine()->getManager();
+
             $request->setMethod('PATCH'); //Treat all PUTs as PATCH
             $form = $this->createForm(get_class(new SizeCategoryType()), $entity, array("method" => $request->getMethod()));
             $this->removeExtraFields($request, $form);
             $form->handleRequest($request);
             if ($form->isValid()) {
+
+                foreach ($sizesOld as $size) {
+                    $em->remove($size);
+                }
+
+                /** @var Size[] $sizes */
+                $sizes = $entity->getSizes();
+                foreach ($sizes as $size) {
+                    $size->setCategory($entity);
+                    $em->persist($size);
+                }
+
                 $em->flush();
 
                 return $entity;
