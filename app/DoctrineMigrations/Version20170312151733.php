@@ -18,7 +18,7 @@ class Version20170312151733 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE UNIQUE INDEX size_unique ON size (name, category_id)');
+        $this->addSql('CREATE UNIQUE INDEX size_unique ON sales_size (name, category_id)');
     }
 
     /**
@@ -29,6 +29,6 @@ class Version20170312151733 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP INDEX size_unique ON size');
+        $this->addSql('DROP INDEX size_unique ON sales_size');
     }
 }

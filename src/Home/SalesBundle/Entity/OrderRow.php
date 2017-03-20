@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * OrderRow
  *
- * @ORM\Table(name="order_row")
+ * @ORM\Table(name="sales_order_row")
  * @ORM\Entity
  */
 class OrderRow
@@ -83,16 +83,6 @@ class OrderRow
      * @ORM\JoinColumn(name="order_id", referencedColumnName="id")
      */
     private $order;
-
-    /**
-     * @var SizeCategory
-     *
-     * @Assert\NotBlank()
-     * @Groups({"order_list"})
-     * @ORM\ManyToOne(targetEntity="SizeCategory")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     */
-    private $category;
 
     /**
      * @var Size
@@ -294,30 +284,6 @@ class OrderRow
     public function getOrder()
     {
         return $this->order;
-    }
-
-    /**
-     * Set category
-     *
-     * @param \Home\SalesBundle\Entity\SizeCategory $category
-     *
-     * @return OrderRow
-     */
-    public function setCategory(\Home\SalesBundle\Entity\SizeCategory $category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return \Home\SalesBundle\Entity\SizeCategory
-     */
-    public function getCategory()
-    {
-        return $this->category;
     }
 
     /**

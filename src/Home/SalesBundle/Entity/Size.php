@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Size
  *
- * @ORM\Table(name="size")
+ * @ORM\Table(name="sales_size")
  * @ORM\Entity
  */
 class Size

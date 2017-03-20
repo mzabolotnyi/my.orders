@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Shop
  *
- * @ORM\Table(name="shop")
+ * @ORM\Table(name="sales_shop")
  * @ORM\Entity
  * @UniqueEntity("name")
  */

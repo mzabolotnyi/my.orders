@@ -26,7 +26,8 @@ class SourceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Home\SalesBundle\Entity\Source'
+            'data_class' => 'Home\SalesBundle\Entity\Source',
+            'allow_extra_fields' => true,
         ));
     }
 

@@ -19,7 +19,6 @@ class OrderRowType extends AbstractType
             ->add('weightIncluded')
             ->add('weightCost')
             ->add('comment')
-            ->add('category')
             ->add('size')
             ->add('shop');
     }

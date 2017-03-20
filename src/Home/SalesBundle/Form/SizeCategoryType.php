@@ -30,7 +30,8 @@ class SizeCategoryType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Home\SalesBundle\Entity\SizeCategory'
+            'data_class' => 'Home\SalesBundle\Entity\SizeCategory',
+            'allow_extra_fields' => true,
         ));
     }
 

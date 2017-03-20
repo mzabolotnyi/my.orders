@@ -27,7 +27,8 @@ class ShopType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Home\SalesBundle\Entity\Shop'
+            'data_class' => 'Home\SalesBundle\Entity\Shop',
+            'allow_extra_fields' => true,
         ));
     }
 

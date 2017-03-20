@@ -22,7 +22,8 @@ class SizeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Home\SalesBundle\Entity\Size'
+            'data_class' => 'Home\SalesBundle\Entity\Size',
+            'allow_extra_fields' => true,
         ));
     }
 
