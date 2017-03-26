@@ -8,7 +8,6 @@ use Doctrine\ORM\Events;
 use Home\MediaBundle\Entity\Media;
 use Home\MediaBundle\Service\UploaderService;
 
-
 class TransformMediaDataSubscriber implements EventSubscriber
 {
     /** @var UploaderService $uploader */

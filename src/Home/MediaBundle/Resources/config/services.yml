@@ -7,3 +7,8 @@ services:
         arguments: ["@home_media.uploader"]
         tags:
             - { name: doctrine.event_subscriber, connection: default }
+    home_media.serializer.subscriber:
+        class: Home\MediaBundle\EventSubscriber\SerializeMediaSubscriber
+        arguments: ["@request_stack"]
+        tags:
+            - { name: jms_serializer.event_subscriber, connection: default }

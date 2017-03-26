@@ -68,7 +68,7 @@ class UploaderService
         $parts = explode('.', $originName);
 
         if (count($parts) < 2) {
-            throw new \Exception('Invalid file data');
+            throw new \Exception('Invalid origin filename');
         }
 
         return $parts[count($parts) - 1];
