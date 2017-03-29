@@ -8,7 +8,7 @@ use Doctrine\DBAL\Schema\Schema;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-class Version20170312103734 extends AbstractMigration
+class Version20170329184400 extends AbstractMigration
 {
     /**
      * @param Schema $schema
@@ -18,7 +18,8 @@ class Version20170312103734 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE sales_order_status (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, alias VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_B88F75C95E237E06 (name), UNIQUE INDEX UNIQ_B88F75C9E16C6B94 (alias), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = InnoDB');
+        $this->addSql('DROP INDEX UNIQ_24C27871E16C6B94 ON sales_order_status');
+        $this->addSql('ALTER TABLE sales_order_status DROP alias');
     }
 
     /**
@@ -29,6 +30,7 @@ class Version20170312103734 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('DROP TABLE sales_order_status');
+        $this->addSql('ALTER TABLE sales_order_status ADD alias VARCHAR(255) DEFAULT NULL COLLATE utf8_unicode_ci');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_24C27871E16C6B94 ON sales_order_status (alias)');
     }
 }

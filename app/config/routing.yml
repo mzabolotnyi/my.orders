@@ -3,6 +3,11 @@ home_sales_order:
     type: rest
     prefix: /
 
+home_sales_order_status:
+    resource: "@HomeSalesBundle/Controller/OrderStatusRESTController.php"
+    type: rest
+    prefix: /
+
 home_sales_shop:
     resource: "@HomeSalesBundle/Controller/ShopRESTController.php"
     type: rest
