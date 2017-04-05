@@ -36,19 +36,18 @@ class OrderStatus
     /**
      * @var string
      *
-     * @Assert\NotBlank()
      * @Groups({"order_status_list", "order_list"})
-     * @ORM\Column(name="alias", type="string", length=255, unique=true, nullable=true)
+     * @ORM\Column(name="color", type="string", length=255, nullable=true)
      */
-    private $alias;
+    private $color;
 
     /**
      * @var string
      *
      * @Groups({"order_status_list", "order_list"})
-     * @ORM\Column(name="color", type="string", length=255, nullable=true)
+     * @ORM\Column(name="icon", type="string", length=255, nullable=true)
      */
-    private $color;
+    private $icon;
 
     /**
      * @var boolean
@@ -57,6 +56,14 @@ class OrderStatus
      * @ORM\Column(name="as_closed", type="boolean", nullable=true)
      */
     private $asClosed;
+
+    /**
+     * @var boolean
+     *
+     * @Groups({"order_status_list", "order_list"})
+     * @ORM\Column(name="no_color", type="boolean", nullable=true)
+     */
+    private $noColor;
 
 
     /**
@@ -94,26 +101,50 @@ class OrderStatus
     }
 
     /**
-     * Set alias
+     * Set color
      *
-     * @param string $alias
+     * @param string $color
      *
      * @return OrderStatus
      */
-    public function setAlias($alias)
+    public function setColor($color)
     {
-        $this->alias = $alias;
+        $this->color = $color;
 
         return $this;
     }
 
     /**
-     * Get alias
+     * Get color
      *
      * @return string
      */
-    public function getAlias()
+    public function getColor()
     {
-        return $this->alias;
+        return $this->color;
+    }
+
+    /**
+     * Set asClosed
+     *
+     * @param boolean $asClosed
+     *
+     * @return OrderStatus
+     */
+    public function setAsClosed($asClosed)
+    {
+        $this->asClosed = $asClosed;
+
+        return $this;
+    }
+
+    /**
+     * Get asClosed
+     *
+     * @return boolean
+     */
+    public function getAsClosed()
+    {
+        return $this->asClosed;
     }
 }

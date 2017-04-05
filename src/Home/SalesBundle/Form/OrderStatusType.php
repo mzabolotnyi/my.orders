@@ -15,6 +15,8 @@ class OrderStatusType extends AbstractType
     {
         $builder->add('name')
         ->add('color')
+        ->add('icon')
+        ->add('noColor')
         ->add('asClosed');
     }
     

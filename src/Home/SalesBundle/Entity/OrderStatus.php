@@ -42,12 +42,28 @@ class OrderStatus
     private $color;
 
     /**
+     * @var string
+     *
+     * @Groups({"order_status_list", "order_list"})
+     * @ORM\Column(name="icon", type="string", length=255, nullable=true)
+     */
+    private $icon;
+
+    /**
      * @var boolean
      *
      * @Groups({"order_status_list", "order_list"})
      * @ORM\Column(name="as_closed", type="boolean", nullable=true)
      */
     private $asClosed;
+
+    /**
+     * @var boolean
+     *
+     * @Groups({"order_status_list", "order_list"})
+     * @ORM\Column(name="no_color", type="boolean", nullable=true)
+     */
+    private $noColor;
 
 
     /**
@@ -130,5 +146,53 @@ class OrderStatus
     public function getAsClosed()
     {
         return $this->asClosed;
+    }
+
+    /**
+     * Set icon
+     *
+     * @param string $icon
+     *
+     * @return OrderStatus
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * Get icon
+     *
+     * @return string
+     */
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+
+    /**
+     * Set noColor
+     *
+     * @param boolean $noColor
+     *
+     * @return OrderStatus
+     */
+    public function setNoColor($noColor)
+    {
+        $this->noColor = $noColor;
+
+        return $this;
+    }
+
+    /**
+     * Get noColor
+     *
+     * @return boolean
+     */
+    public function getNoColor()
+    {
+        return $this->noColor;
     }
 }
