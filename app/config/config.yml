@@ -90,6 +90,11 @@ fos_rest:
     serializer:
         serialize_null: true
 
+jms_serializer:
+    handlers:
+        datetime:
+            default_format: "Y-m-d"
+
 # Nelmio Cors Configuration
 nelmio_cors:
     defaults:
