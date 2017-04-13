@@ -91,7 +91,7 @@ class OrderRESTController extends VoryxController
 
             /** @var OrderRow[] $rows */
             $rows = $entity->getRows();
-            foreach ($rows as $row){
+            foreach ($rows as $row) {
                 $row->setOrder($entity);
                 $em->persist($row);
             }
@@ -128,15 +128,24 @@ class OrderRESTController extends VoryxController
 
             if ($form->isValid()) {
 
-                foreach ($rowsOld as $row){
-                    $em->remove($row);
-                }
+                $requestParams = $request->request->all();
 
-                /** @var OrderRow[] $rows */
-                $rows = $entity->getRows();
-                foreach ($rows as $row){
-                    $row->setOrder($entity);
-                    $em->persist($row);
+                if (isset($requestParams['rows'])) {
+
+                    foreach ($rowsOld as $row) {
+                        $em->remove($row);
+                    }
+
+                    /** @var OrderRow[] $rows */
+                    $rows = $entity->getRows();
+                    foreach ($rows as $row) {
+                        $row->setOrder($entity);
+                        $em->persist($row);
+                    }
+                } else {
+                    foreach ($rowsOld as $row) {
+                        $entity->addRow($row);
+                    }
                 }
 
                 $em->flush();
