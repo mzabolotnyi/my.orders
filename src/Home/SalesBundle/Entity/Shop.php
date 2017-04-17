@@ -2,7 +2,9 @@
 
 namespace Home\SalesBundle\Entity;
 
+use AppBundle\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Home\MediaBundle\Entity\Media;
 use JMS\Serializer\Annotation\Groups;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -17,6 +19,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Shop
 {
+    use TimestampableEntity;
+    use SoftDeleteableEntity;
+
     /**
      * @var int
      *

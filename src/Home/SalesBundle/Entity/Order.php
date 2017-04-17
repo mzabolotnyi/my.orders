@@ -2,8 +2,10 @@
 
 namespace Home\SalesBundle\Entity;
 
+use AppBundle\Traits\TimestampableEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use JMS\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -15,6 +17,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Order
 {
+    use TimestampableEntity;
+    use SoftDeleteableEntity;
+
     /**
      * @var int
      *

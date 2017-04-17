@@ -2,6 +2,9 @@
 
 namespace Home\SalesBundle\Repository;
 
+use Doctrine\ORM\QueryBuilder;
+use Home\SalesBundle\Entity\Order;
+
 /**
  * OrdersRepository
  *
@@ -10,4 +13,125 @@ namespace Home\SalesBundle\Repository;
  */
 class OrderRepository extends \Doctrine\ORM\EntityRepository
 {
+    const TABLE_ALIAS = 'orders';
+
+    /**
+     * @param array $criteria
+     * @param array|null $orderBy
+     * @return Order[]
+     */
+    public function findByCriteria(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+    {
+        $qb = $this->createQueryBuilder(self::TABLE_ALIAS);
+
+        $this->addCriteria($qb, $criteria);
+
+        if ($orderBy) {
+            $this->addOrdering($qb, $orderBy);
+        }
+
+        if ($limit) {
+            $qb->setMaxResults($limit);
+        }
+
+        if ($offset) {
+            $qb->setFirstResult($offset + 1);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param array $criteria
+     */
+    private function addCriteria(QueryBuilder &$qb, array $criteria)
+    {
+        $qb->leftJoin(self::TABLE_ALIAS . '.source', 'source')
+            ->leftJoin(self::TABLE_ALIAS . '.status', 'status')
+            ->leftJoin(self::TABLE_ALIAS . '.rows', 'rows');
+
+        if (isset($criteria['status']) && $value = $criteria['status']) {
+            if ($value === 'actual') {
+                $this->addCondition($qb, 'status.asClosed', false);
+            } else {
+                $this->addCondition($qb, 'status.id', $value);
+            }
+        }
+
+        if (isset($criteria['q']) && $value = $criteria['q']) {
+            if (count_chars($value) >= 2) {
+                $this->addConditionSearch($qb, $value);
+            }
+        }
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param string $value
+     * @param string $field
+     */
+    private function addCondition(QueryBuilder &$qb, $field, $value)
+    {
+        if (is_array($value)) {
+            $this->addConditionIn($qb, $field, $value);
+        } else {
+            $this->addConditionEqual($qb, $field, $value);
+        }
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param $field
+     * @param $value
+     */
+    private function addConditionEqual(QueryBuilder &$qb, $field, $value)
+    {
+        $paramName = str_replace('.', '_', $field) . '_param';
+
+        $qb->andWhere("$field = :$paramName")
+            ->setParameter($paramName, $value);
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param $field
+     * @param $value
+     */
+    private function addConditionIn(QueryBuilder &$qb, $field, array $value)
+    {
+        $qb->andWhere($qb->expr()->in($field, $value));
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param string $queryString
+     */
+    private function addConditionSearch(QueryBuilder &$qb, $queryString)
+    {
+        $orExpr = $qb->expr()->orX();
+
+        $orExpr->add($qb->expr()->like(self::TABLE_ALIAS . '.number', ':queryString'));
+        $orExpr->add($qb->expr()->like(self::TABLE_ALIAS . '.phone', ':queryString'));
+        $orExpr->add($qb->expr()->like(self::TABLE_ALIAS . '.delivery', ':queryString'));
+        $orExpr->add($qb->expr()->like(self::TABLE_ALIAS . '.comment', ':queryString'));
+        $orExpr->add($qb->expr()->like('rows.product', ':queryString'));
+        $orExpr->add($qb->expr()->like('rows.comment', ':queryString'));
+
+        $qb->andWhere($orExpr);
+        $qb->setParameter('queryString', '%' . $queryString . '%');
+    }
+
+    /**
+     * @param QueryBuilder $qb
+     * @param $orderBy
+     */
+    private function addOrdering(QueryBuilder &$qb, array $orderBy)
+    {
+        foreach ($orderBy as $fieldName => $orientation) {
+            $qb->addOrderBy(self::TABLE_ALIAS . '.' . $fieldName, $orientation);
+        }
+
+        $qb->addOrderBy(self::TABLE_ALIAS . '.id', 'DESC');
+    }
 }

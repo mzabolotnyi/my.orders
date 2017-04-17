@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View as FOSView;
+use Home\SalesBundle\Repository\OrderRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Voryx\RESTGeneratorBundle\Controller\VoryxController;
@@ -53,16 +54,21 @@ class OrderRESTController extends VoryxController
         try {
             $offset = $paramFetcher->get('offset');
             $limit = $paramFetcher->get('limit');
-            $order_by = $paramFetcher->get('order_by');
+            $orderBy = $paramFetcher->get('order_by');
             $filters = !is_null($paramFetcher->get('filters')) ? $paramFetcher->get('filters') : array();
 
             $em = $this->getDoctrine()->getManager();
-            $entities = $em->getRepository('HomeSalesBundle:Order')->findBy($filters, $order_by, $limit, $offset);
+
+            /** @var OrderRepository $repo */
+            $repo = $em->getRepository('HomeSalesBundle:Order');
+            $entities = $repo->findByCriteria($filters, $orderBy, $limit, $offset);
+
             if ($entities) {
                 return $entities;
             }
 
             return [];
+
         } catch (\Exception $e) {
             return FOSView::create($e->getMessage(), Codes::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -115,7 +121,7 @@ class OrderRESTController extends VoryxController
      * @return Response
      */
     public function putAction(Request $request, Order $entity)
-    {return $entity;
+    {
         try {
             /** @var OrderRow[] $rowsOld */
             $rowsOld = clone $entity->getRows();

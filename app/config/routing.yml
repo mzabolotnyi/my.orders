@@ -27,8 +27,3 @@ home_sales_source:
     resource: "@HomeSalesBundle/Controller/SourceRESTController.php"
     type: rest
     prefix: /
-
-home_sales:
-    resource: "@HomeSalesBundle/Controller"
-    type: annotation
-    prefix: /
