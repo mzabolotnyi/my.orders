@@ -25,6 +25,7 @@ class OrderType extends AbstractType
             ->add('phone')
             ->add('delivery')
             ->add('comment')
+            ->add('isOwn')
             ->add('source')
             ->add('status')
             ->add('rows', CollectionType::class, array(

@@ -90,6 +90,14 @@ class Order
     private $comment;
 
     /**
+     * @var string
+     *
+     * @Groups({"order_list"})
+     * @ORM\Column(name="is_own", type="boolean", nullable=true)
+     */
+    private $isOwn;
+
+    /**
      * @var Source
      *
      * @Groups({"order_list"})
@@ -383,5 +391,29 @@ class Order
     public function getRows()
     {
         return $this->rows;
+    }
+
+    /**
+     * Set isOwn
+     *
+     * @param boolean $isOwn
+     *
+     * @return Order
+     */
+    public function setIsOwn($isOwn)
+    {
+        $this->isOwn = $isOwn;
+
+        return $this;
+    }
+
+    /**
+     * Get isOwn
+     *
+     * @return boolean
+     */
+    public function getIsOwn()
+    {
+        return $this->isOwn;
     }
 }
