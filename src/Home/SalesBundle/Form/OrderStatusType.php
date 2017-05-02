@@ -17,7 +17,8 @@ class OrderStatusType extends AbstractType
         ->add('color')
         ->add('icon')
         ->add('noColor')
-        ->add('asClosed');
+        ->add('asClosed')
+        ->add('forNew');
     }
     
     /**

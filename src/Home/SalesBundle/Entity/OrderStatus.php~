@@ -2,7 +2,9 @@
 
 namespace Home\SalesBundle\Entity;
 
+use AppBundle\Traits\TimestampableEntity;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use JMS\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -14,6 +16,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class OrderStatus
 {
+    use TimestampableEntity;
+    use SoftDeleteableEntity;
+
     /**
      * @var int
      *
@@ -56,6 +61,14 @@ class OrderStatus
      * @ORM\Column(name="as_closed", type="boolean", nullable=true)
      */
     private $asClosed;
+
+    /**
+     * @var boolean
+     *
+     * @Groups({"order_status_list", "order_list"})
+     * @ORM\Column(name="for_new", type="boolean", nullable=true)
+     */
+    private $forNew;
 
     /**
      * @var boolean
@@ -146,5 +159,53 @@ class OrderStatus
     public function getAsClosed()
     {
         return $this->asClosed;
+    }
+
+    /**
+     * Set icon
+     *
+     * @param string $icon
+     *
+     * @return OrderStatus
+     */
+    public function setIcon($icon)
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * Get icon
+     *
+     * @return string
+     */
+    public function getIcon()
+    {
+        return $this->icon;
+    }
+
+    /**
+     * Set noColor
+     *
+     * @param boolean $noColor
+     *
+     * @return OrderStatus
+     */
+    public function setNoColor($noColor)
+    {
+        $this->noColor = $noColor;
+
+        return $this;
+    }
+
+    /**
+     * Get noColor
+     *
+     * @return boolean
+     */
+    public function getNoColor()
+    {
+        return $this->noColor;
     }
 }

@@ -66,6 +66,14 @@ class OrderStatus
      * @var boolean
      *
      * @Groups({"order_status_list", "order_list"})
+     * @ORM\Column(name="for_new", type="boolean", nullable=true)
+     */
+    private $forNew;
+
+    /**
+     * @var boolean
+     *
+     * @Groups({"order_status_list", "order_list"})
      * @ORM\Column(name="no_color", type="boolean", nullable=true)
      */
     private $noColor;
@@ -199,5 +207,29 @@ class OrderStatus
     public function getNoColor()
     {
         return $this->noColor;
+    }
+
+    /**
+     * Set forNew
+     *
+     * @param boolean $forNew
+     *
+     * @return OrderStatus
+     */
+    public function setForNew($forNew)
+    {
+        $this->forNew = $forNew;
+
+        return $this;
+    }
+
+    /**
+     * Get forNew
+     *
+     * @return boolean
+     */
+    public function getForNew()
+    {
+        return $this->forNew;
     }
 }
